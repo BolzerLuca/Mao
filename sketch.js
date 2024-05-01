@@ -5,8 +5,6 @@ let stack = [];
 let cardOnTable, playedCard, playedSevens, playedFours, calledSevens, calledFours, twinsInARow, calledTwins, punishmentsToReceive = 0;
 let reasonsForPunishment = '';
 let calledCard = false;
-let cardOnTable;
-let playedCard;
 let cardSizeX = 81;
 let cardSizeY = 117;
 
@@ -26,10 +24,14 @@ function setup() {
   kysseMysse();
   print(stack);
   print(myHand);
-}
-
-function draw() {
-//image(cardArray,width/2,height/2,81,118,myHand[1]*81,myHand[1]*118)
+  NewCardOnTable();
+  playedCard = stack[floor(random(0, stack.length))];
+  checkPunishments();
+  print(cardOnTable);
+  print(playedCard);
+  print(isCardLegal());
+  print(punishmentsToReceive);
+  print(reasonsForPunishment);
 }
 
 function kysseMysse() {
@@ -50,14 +52,6 @@ function fillStack() {
       stack.push(new kort(j, i));
     }
   }
-  NewCardOnTable();
-  playedCard = stack[floor(random(0, stack.length))];
-  checkPunishments();
-  print(cardOnTable);
-  print(playedCard);
-  print(isCardLegal());
-  print(punishmentsToReceive);
-  print(reasonsForPunishment);
 }
 
 function fillHand() {
@@ -67,8 +61,9 @@ function fillHand() {
     stack.splice(tempCard,1);
   
   }
-function draw() {
-  background(220);
+}
+
+  function draw() {
   // TODO giv fejl ved for langt tid brugt
   // TODO fjern det her senere (Det er knappen)
   fill('green');
